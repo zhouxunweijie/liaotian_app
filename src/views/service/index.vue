@@ -43,9 +43,12 @@ export default {
       _this.save({
         messageType: '1',
         content: res.content,
-        type: obj.msgType,
-        time: obj.time
+        type: res.type,
+        time: res.time
+      }).then(() => {
+        _this.scrollToBottom()
       })
+
     })
 
     this.$store.state.message.push({

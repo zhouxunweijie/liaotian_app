@@ -20,6 +20,7 @@ export default {
     // 获取空闲的容联云账号
     this.getLeisureAccountNumber().then(res => {
       this.$store.state.user = res.data
+      localStorage.setItem('accountId', this.$store.state.user.accountId)
       IM.init(this.$store.state.user)
       // 获取聊天记录
       this.getMessage().then(() => {

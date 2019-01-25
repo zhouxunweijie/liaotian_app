@@ -16,7 +16,8 @@ export default new Vuex.Store({
       return new Promise(resolve => {
         IM.postMsg({
           data: obj.content,
-          id: obj.time
+          id: '00001',
+          userId: state.user.userId
         }).then(res => {
           dispatch('save', obj).then(() => {
             resolve()
