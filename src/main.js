@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import './common'
 import App from './App.vue'
 import store from './store'
 import 'vant/lib/index.css'

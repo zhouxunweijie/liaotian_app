@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import IM from '@/assets/IM'
-import { getMessengerAccount, listForChatRecord, save} from '@/assets/api'
+import { getMessengerAccount, listForChatRecord, save, getCustomerServicePhone} from '@/assets/api'
 
 Vue.use(Vuex)
 
@@ -18,7 +18,7 @@ export default new Vuex.Store({
           data: obj.content,
           id: '00001',
           userId: state.user.userId
-        }).then(res => {
+        }).then(() => {
           dispatch('save', obj).then(() => {
             resolve()
           })
@@ -40,7 +40,15 @@ export default new Vuex.Store({
           userId: state.userId
         }).then(res => {
           state.message = res.data
-          resolve()
+          getCustomerServicePhone().then(data => {
+            state.message.push({
+              content: '你好，欢迎联系民麦金服客服，如果等待时间较长，请联系电话'+ data.data,
+              messageType: '1',
+              id: new Date().getTime(),
+              time: new Date().getTime()
+            })
+            resolve()
+          })
         })
       })
     },
@@ -51,7 +59,7 @@ export default new Vuex.Store({
           type: obj.type,
           content: obj.content,
           messageType: obj.messageType
-        }).then(res => {
+        }).then(() => {
           state.message.push({
             messageType: obj.messageType,
             content: obj.content,

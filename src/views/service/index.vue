@@ -51,13 +51,6 @@ export default {
 
     })
 
-    this.$store.state.message.push({
-      content: '你好，欢迎联系麦缘婚恋客服，如果等待时间较长，请联系电话00000000000',
-      messageType: '1',
-      id: new Date().getTime(),
-      time: new Date().getTime()
-    })
-
   },
   methods: {
     ...mapActions(['save', 'postMessage']),
